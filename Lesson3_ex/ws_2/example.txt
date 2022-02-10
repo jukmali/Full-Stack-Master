@@ -1,0 +1,4 @@
+Welcome to FUll Stack course next WS
+This time we read/write/delete files
+
+Happy coding!
