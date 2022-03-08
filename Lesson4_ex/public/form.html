@@ -17,34 +17,38 @@
     }
   </style>
   <script>
-    window.onload= (event) => {
+    window.onload = (event) =>{
+      
       var sendButton = document.getElementById("myButton");
       sendButton.addEventListener("click", function(){
-      
-      var email = document.getElementById("email").value;
-      var pass = document.getElementById("pass").value;
-      
-      // We create AJAX object which is waiting response
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function(){
+        
+        var email = document.getElementById("email").value;
+        var pass = document.getElementById("pass").value;
+        
+        console.log(email);
+        // We create AJAX object which is waiting response
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
           if(this.readyState == 4 && this.status == 200){
-           
             // Response data will be shown in status field
             document.getElementById("status").innerHTML = this.responseText;
             console.log(this.responseText);
+            // alert(this.responseText);
           };
         };
         // Send the AJAX request, type is POST
         xmlhttp.open("POST","/signin", true);
+        // We create AJAX parameters and the data fields
+        xmlhttp.setRequestHeader(
+          "Content-type",
+          "application/x-www-form-urlencoded"
+        );
         xmlhttp.send("email=" + email + "&pass=" + pass);
-      )};
-
-    )};
+        
+      });
     };
-      
-  </script>
-  
-  <body">
+    </script>
+  <body>
     <div>
     <!-- REMARK - Form method is  = POST or GET -->
     <!-- action - define the URL where POST/GET request will be sent -->
