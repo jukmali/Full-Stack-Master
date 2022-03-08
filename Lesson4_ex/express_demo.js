@@ -1,5 +1,6 @@
 // We take express module in use
 const { response, request } = require("express");
+var fs = require("fs");
 require("dotenv").config();
 var express = require("express");
 var app = express();
@@ -17,6 +18,37 @@ app.use(express.static("./public"));
     response.send("This is the front page");
 }) */
 
+// Serve a form to the user
+app.get("/adduser", function(req, res) {
+    res.sendFile(__dirname + "/public/adduser.html");
+  });
+  
+  
+  app.post("/adduser", function(req, res) {
+    // Load the existing data from a file
+    var data = require("./exampledata2.json");
+  
+  
+    data.push({
+      Name: req.body.name,
+      Company: req.body.company,
+      Email: req.body.email,
+      Date: new Date()
+    });
+  
+    // Convert the JSON object to a string format
+    var jsonStr = JSON.stringify(data);
+  
+    // Write data to a file
+    fs.writeFile("exampledata2.json", jsonStr, err => {
+      if (err) throw err;
+      console.log("It's saved!");
+    });
+    res.send(
+      "Saved the data to a file. Browse to the /details to see the contents of the file"
+    );
+  });
+
 app.post("/signin" , function(request,response){
     // POST
     var email = request.body.email;
@@ -27,15 +59,32 @@ app.post("/signin" , function(request,response){
     //response.send("Form was submitted: " + email + " " + pass);
 
     if(email == process.env.USERID && pass == process.env.PASSWORD){
-        response.redirect("/studentpages")
+        response.redirect("/studentpages");
     } else {
-        response.send("Form was submitted: " + email + " " + pass);
-
+        response.send("Form submitted: " + email + " " + pass);
     }
     
 }); 
 app.get("/studentpages", function(request, response){
-    response.send("Your are now in the seacret student page!");
+    response.send("Your are now in the seacret STUDENT PAGE!");
+});
+
+app.get("/details", function(request,response){
+    var data = require(__dirname + '/exampledata2.json');
+    
+    //parse result in the table
+    var results = '<table border="1">'
+    for (var i = 0; i < data.length; i++){
+        results +=
+        '<tr>'+
+        '<td>' + data[i].Name + '</td>' +
+        '<td>' + data[i].Email + '</td>' +
+        '</tr>';
+
+    };
+
+    response.send(results);
+
 });
 
 app.get("/contact", function(request, response){
