@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1><%=heading %></h1>
+    <ul>
+        <% for(var i = 0; i < listItems.length ; i++){ %>
+            <% if(listItems[i] == "apple"){ %>
+                <li style="color:red">
+                    <strong><%= listItems[i] %> Good! you remeber this</strong>
+                </li>
+                <%} else {%>
+                    <li><%= listItems[i] %></li>
+
+              <%  } %>
+         
+       <% } %>
+
+    </ul>
+</body>
+</html>
