@@ -1,0 +1,92 @@
+<html>
+<!-- BOOTSRAP - Styling -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+  <!-- more styling -->
+  <style>
+    div {
+      margin: 10px;
+    }
+    form {
+      border: 1px solid lightgrey;
+      padding: 10px;
+    }
+  </style>
+  <script>
+    window.onload = (event) =>{
+      
+      var sendButton = document.getElementById("myButton");
+      sendButton.addEventListener("click", function(){
+        
+        var email = document.getElementById("email").value;
+        var pass = document.getElementById("pass").value;
+        
+        console.log(email);
+        // We create AJAX object which is waiting response
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
+          if(this.readyState == 4 && this.status == 200){
+            // Response data will be shown in status field
+            document.getElementById("status").innerHTML = this.responseText;
+            console.log(this.responseText);
+            // alert(this.responseText);
+            if(this.responseText.includes("<!DOCTYPE html>")){
+              console.log("true");
+              window.open("index.html");
+            }
+          };
+        };
+        // Send the AJAX request, type is POST
+        xmlhttp.open("POST","/signin", true);
+        // We create AJAX parameters and the data fields
+        xmlhttp.setRequestHeader(
+          "Content-type",
+          "application/x-www-form-urlencoded"
+        );
+        xmlhttp.send("email=" + email + "&pass=" + pass);
+        
+      });
+    };
+  </script>
+  <body">
+    <div>
+    <!-- REMARK - Form method is  = POST or GET -->
+    <!-- action - define the URL where POST/GET request will be sent -->
+      <form  method="POST" action="/signin">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <!-- Remark text field name-attribute -->
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+            name="email" 
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <!-- Huomaa tekstikentän name-attribuutti -->
+           <input
+            type="password"
+            class="form-control"
+            id="pass"
+            placeholder="Password"
+            name="pass"
+          />
+        </div>
+        <!-- Buttonin type = submit, which generates the sending -->
+        <button type="button" id="myButton" class="btn btn-primary">
+          Submit
+        </button>
+        <div id="status" class="form-group"></div>
+      </form>
+    </div>
+  
+  </body>
+</html>

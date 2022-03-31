@@ -1,32 +1,32 @@
 
-/* Tuodaan moduuli ohjelmaan */
+/* Take the mongo module */
 const MongoClient = require("mongodb").MongoClient;
 
-/* Haetaan ympäristömuuttujat .env tiedostosta */
+/* Let's take env parameters in use */
 require("dotenv").config();
 
 /* console.log(process.env); */
 var user = process.env.MONGO_USERID
 var pw = process.env.MONGO_PW
 
+// Create connection script to db
 const uri = "mongodb+srv://" + user + ":" + pw + "@cluster0.dld5m.mongodb.net/test?retryWrites=true&w=majority";
 
-// const uri = "mongodb+srv://" + user + ":" + salis + "@cluster0.anqd5.mongodb.net/sample_mflix?retryWrites=true&w=majority";
 
-/* Luodaan uusi yhteysolio käyttäen edellä määriteltyä URI:a sekä tarvittavia parametreja */
+/* Connection object */
 
 const client = new MongoClient(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
-/* Luodaan yhteys ja tulostetaan tieto virheestä tai onnistumisesta virhetiedot palaututuvat err muuttujaan, hakujen tulokset r-muuttujaan */
+/* Let's make the connection */
 
 client.connect(function (err, r) {
     if (err) throw err;
     else console.log("Connected!");
 
-    // Suljetaan tietokantayhteys
+    // Close the connection
     client.close();
     console.log("Disconnected");
 });

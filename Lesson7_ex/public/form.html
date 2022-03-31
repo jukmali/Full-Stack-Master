@@ -1,0 +1,57 @@
+<html>
+<!-- BOOTSRAP - Styling -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+  <!-- more styling -->
+  <style>
+    div {
+      margin: 10px;
+    }
+    form {
+      border: 1px solid lightgrey;
+      padding: 10px;
+    }
+  </style>
+  
+  <body">
+    <div>
+    <!-- REMARK - Form method is  = POST or GET -->
+    <!-- action - define the URL where POST/GET request will be sent -->
+      <form  method="POST" action="/signin">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <!-- Remark text field name-attribute -->
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+            name="email" 
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <!-- Huomaa tekstikentän name-attribuutti -->
+           <input
+            type="password"
+            class="form-control"
+            id="pass"
+            placeholder="Password"
+            name="pass"
+          />
+        </div>
+        <!-- Buttonin type = submit, which generates the sending -->
+        <button type="submit" id="myButton" class="btn btn-primary">
+          Submit
+        </button>
+        <div id="status" class="form-group"></div>
+      </form>
+    </div>
+  
+  </body>
+</html>
