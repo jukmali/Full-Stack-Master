@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "env": "^0.0.2",
+    "express": "^4.17.3",
+    "mongo": "^0.1.0",
+    "mongoose": "^6.2.10"
+  }
+}
