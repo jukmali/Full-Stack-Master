@@ -55,6 +55,7 @@ app.post("/api/add", function(req, res) {
 
 // Modify the information of movie by ID number.See how to read the ID
 app.put("/api/modify/:id", function(req, res) {
+  console.log("Modify movie by " + req.params.id);
   res.send("Modify movie by " + req.params.id);
 });
 
@@ -80,7 +81,7 @@ app.delete("/api/remove/:id", function(req, res) {
 });
 
 // Web server by express
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8080;
 app.listen(PORT, function() {
   console.log("Example app is listening on port %d", PORT);
 });
