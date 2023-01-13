@@ -1,6 +1,8 @@
 // Use express-module
 var express = require("express");
+var cors = require('cors')
 var app = express();
+app.use(cors())
 
 // This for the templates
 var bodyParser = require("body-parser");
@@ -49,7 +51,7 @@ app.get("/api/movies", function(req, res) {
 
 // Add one movie - see how to read the POST parameters
 app.post("/api/add", function(req, res) {
-  
+  console.log("Add movie");
   res.send("Add movie: " + req.body.title + " (" + req.body.year + ")");
 });
 
