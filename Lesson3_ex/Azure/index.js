@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 3000;cd 
+const PORT = process.env.PORT || 3000;
 var http = require("http");
 
 // Create server object
