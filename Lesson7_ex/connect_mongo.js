@@ -10,7 +10,8 @@ var user = process.env.MONGO_USERID
 var pw = process.env.MONGO_PW
 
 // Create connection script to db
-const uri = "mongodb+srv://" + user + ":" + pw + "@cluster0.dld5m.mongodb.net/test?retryWrites=true&w=majority";
+//const uri = "mongodb+srv://" + user + ":" + pw + "@cluster0.dld5m.mongodb.net/test?retryWrites=true&w=majority";
+const uri = "mongodb+srv://" + user + ":"+ pw + "@cluster0.nqnlt.mongodb.net/?retryWrites=true&w=majority";
 
 
 /* Connection object */

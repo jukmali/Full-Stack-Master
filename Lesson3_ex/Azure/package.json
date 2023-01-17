@@ -1,17 +1,18 @@
 {
-  "name": "azuredemo",
-  "version": "1.0.0",
-  "description": "Azuredemo application",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
-  "keywords": [
-    "Azure",
-    "demo",
-    "application"
-  ],
-  "author": "Jukka Malinen",
-  "license": "ISC"
-}
+    "name": "azuredemo",
+    "version": "1.0.0",
+    "description": "Azuredemo application",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node index.js"
+    },
+    "keywords": [
+      "Azure",
+      "demo",
+      "application"
+    ],
+    "author": "Jukka Malinen",
+    "license": "ISC"
+  }
+  

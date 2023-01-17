@@ -9,7 +9,9 @@ var user = process.env.MONGO_USERID
 var pw = process.env.MONGO_PW
 
 // Create connection script to db
-const uri = "mongodb+srv://" + user + ":" + pw + "@cluster0.dld5m.mongodb.net/sample_mflix?retryWrites=true&w=majority";
+//const uri = "mongodb+srv://" + user + ":"+ pw + "@cluster0.nqnlt.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://" + user + ":"+ pw + "@cluster0.nqnlt.mongodb.net/sample_mflix?retryWrites=true&w=majority";
+
 
 // Create connection object
 const client = new MongoClient(uri, {
@@ -40,7 +42,7 @@ var query = {
     // Make addision with collection-object
     collection.insertOne(newMovie, function(err, r) {
       // How many objects have been included (1)
-      console.log(r.insertedCount);
+      //console.log(r.insertedCount);
     });
   
     // Check that new addition is in the db

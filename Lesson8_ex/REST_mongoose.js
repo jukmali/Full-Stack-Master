@@ -19,7 +19,8 @@ var user = process.env.MONGO_USERID
 var pw = process.env.MONGO_PW
 
 // Create connection script to db
-const uri = "mongodb+srv://" + user + ":" + pw + "@cluster0.dld5m.mongodb.net/sample_mflix?retryWrites=true&w=majority";
+//const uri = "mongodb+srv://" + user + ":" + pw + "@cluster0.dld5m.mongodb.net/sample_mflix?retryWrites=true&w=majority";
+const uri = "mongodb+srv://" + user + ":"+ pw + "@cluster0.nqnlt.mongodb.net/sample_mflix?retryWrites=true&w=majority";
 
 // Make connection to database
  mongoose.connect(uri, {useNewUrlParser:true, useUnifiedTopology:true});
