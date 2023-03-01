@@ -33,7 +33,12 @@
             // Response data will be shown in status field
             document.getElementById("status").innerHTML = this.responseText;
             console.log(this.responseText);
+
             // alert(this.responseText);
+            if(this.responseText == "SUCCESS"){
+              window.location.replace("/studentpages");
+              return;
+            }
           };
         };
         // Send the AJAX request, type is POST

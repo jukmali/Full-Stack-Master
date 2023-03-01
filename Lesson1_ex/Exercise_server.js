@@ -3,12 +3,12 @@ var http = require("http");
 var server = http.createServer(function(request,response){
 
     if(request.url === "/"){
-        response.writeHead(200,{'Content-Type': 'text/plain'});
+        response.writeHead(200,{'Content-Type': 'application/plain'});
         response.end('Hello from first home page!');
     }
-    if(request.url === "/own"){
+    if(request.url === "/myblog"){
         response.writeHead(200,{'Content-Type': 'text/html'});
-        response.write("<h1>Own page heading</h1>");
+        response.write("<h1>Own blog heading</h1>");
         response.end('<h2>Hello from own page</h2>');
     }
     

@@ -1,3 +1,4 @@
+//const { response } = require('express');
 var https = require('https')
 var options = {
   hostname: 'www.omdbapi.com',
@@ -5,6 +6,7 @@ var options = {
   path: '/?s=star+wars&apikey=cbbc6750',
   //method: 'GET'
 };
+
 
 const req = https.request(options, res => {
   console.log(`statusCode: ${res.statusCode}`)

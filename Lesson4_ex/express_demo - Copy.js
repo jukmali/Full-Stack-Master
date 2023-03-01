@@ -48,12 +48,11 @@ app.get("/adduser", function(req, res) {
       "Saved the data to a file. Browse to the /details to see the contents of the file"
     );
   });
-var email = "";
-var pass = "";
+
 app.post("/signin" , function(request,response){
     // POST
-    email = request.body.email;
-    pass = request.body.pass;
+    var email = request.body.email;
+    var pass = request.body.pass;
     console.log(email);
     console.log(pass);
     // console.log(process.env);
@@ -69,11 +68,8 @@ app.post("/signin" , function(request,response){
     
 }); 
 app.get("/studentpages", function(request, response){
-    if(email == process.env.USERID && pass == process.env.PASSWORD){
-        response.send("Your are now in the seacret STUDENT PAGE!");
-    } else {
-        response.send("You do not have permisson for this site!");
-    }
+    
+    response.send("Your are now in the seacret STUDENT PAGE!");
 });
 
 app.get("/details", function(request,response){
