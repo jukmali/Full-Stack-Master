@@ -21,22 +21,18 @@ const client = new MongoClient(uri, {
 
 // Let's make query to check the new data
 var query = {
-    title: new RegExp("Jukka's new")
+    userid: new RegExp("happy")
   };
   
   // New data object
   var newMovie = {
-    title: "Jukka's new list of movies",
-    year: "2022",
-    imdbID: "87654",
-    type: "movie",
-    poster:
-      "https://m.media-amazon.com/images/M/MV5BMjQ1MzcxNjg4N15BMl5BanBnXkFtZTgwNzgwMjY4MzI@._V1_SX300.jpg"
+    userid: "happy.lector@laurea.fi",
+    password: "ope",
   };
   
   // Let's make connection to "sample_mflix" and there the collection "movies"
   client.connect(err => {
-    const collection = client.db("sample_mflix").collection("movies");
+    const collection = client.db("connectionDB").collection("passwords");
     if (err) throw err;
   
     // Make addision with collection-object

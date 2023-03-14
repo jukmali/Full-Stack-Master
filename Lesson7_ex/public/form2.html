@@ -33,10 +33,12 @@
             // Response data will be shown in status field
             document.getElementById("status").innerHTML = this.responseText;
             console.log(this.responseText);
+
             // alert(this.responseText);
-            if(this.responseText.includes("SUCCESS")){
-              console.log("true");
-              window.location.href = "/studentpages";
+            if(this.responseText == "SUCCESS"){
+              
+              window.location.replace("/studentpage.html");
+              return;
             }
           };
         };
@@ -51,8 +53,8 @@
         
       });
     };
-  </script>
-  <body">
+    </script>
+  <body>
     <div>
     <!-- REMARK - Form method is  = POST or GET -->
     <!-- action - define the URL where POST/GET request will be sent -->
@@ -87,6 +89,7 @@
         <div id="status" class="form-group"></div>
       </form>
     </div>
+    
   
   </body>
 </html>

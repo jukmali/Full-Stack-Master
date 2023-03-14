@@ -28,13 +28,13 @@ app.get("/adduser", function(req, res) {
     // Load the existing data from a file
     var data = require("./exampledata2.json");
   
-  
-    data.push({
-      Name: req.body.name,
-      Company: req.body.company,
+   var jdataObj = {
+     Name: req.body.name,
+     Company: req.body.company,
       Email: req.body.email,
       Date: new Date()
-    });
+   }
+    data.push(jdataObj);
   
     // Convert the JSON object to a string format
     var jsonStr = JSON.stringify(data);
