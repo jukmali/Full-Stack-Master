@@ -19,13 +19,13 @@ var user = process.env.MONGO_USERID
 var pw = process.env.MONGO_PW
 
 // Create connection script to db
-//const uri = "mongodb+srv://" + user + ":" + pw + "@cluster0.dld5m.mongodb.net/sample_mflix?retryWrites=true&w=majority";
-const uri = "mongodb+srv://" + user + ":"+ pw + "@cluster0.nqnlt.mongodb.net/sample_mflix?retryWrites=true&w=majority";
+const uri = "mongodb+srv://" + user + ":"+ pw + "@cluster0.dld5m.mongodb.net/sample_mflix?retryWrites=true&w=majority";
 
 // Make connection to database
  mongoose.connect(uri, {useNewUrlParser:true, useUnifiedTopology:true});
  
 // Make schema to your data model
+
 const Movie = mongoose.model(
   "Movie",
   {
@@ -34,21 +34,27 @@ const Movie = mongoose.model(
     poster: String,
   },
   "movies" // REMARK! These operations are pointed to this collection
-)
-
+) 
 // Print the movies
 app.get("/api/movies", function(req, res) {
+  async function findMovie(){
+    try{
+      var results = await Movie.find({}, null, {limit:20});
+        
+          console.log(results);
+          res.status(200).json(results);
+      } catch (e){
+        console.error(e);
+      } finally {
+        //await Movie.;
+        //mongoose.connection.close();
+        console.log("Request done!");
+      }
 
-  Movie.find({}, null, {limit:20}, function(err,results){
-    //if err then return the fault code to browser
-    if(err) {
-      res.status(500).json("Fault in data search");
-    } else {
-      // Return the results as JSON-objects to browser
-      res.status(200).json(results);
     };  
+    findMovie();
   });
-});
+
 
 // Add one movie - see how to read the POST parameters
 app.post("/api/add", function(req, res) {

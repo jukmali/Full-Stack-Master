@@ -12,6 +12,7 @@ var pw = process.env.MONGO_PW
 //const uri = "mongodb+srv://" + user + ":" + pw + "@cluster0.dld5m.mongodb.net/mongoosedemo?retryWrites=true&w=majority";
 const uri = "mongodb+srv://" + user + ":"+ pw + "@cluster0.dld5m.mongodb.net/?retryWrites=true&w=majority";
 
+
 // Connect to database
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -19,18 +20,22 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const User = mongoose.model("User", {
   username: String,
   password: Number,
-  birthday: Date
+  birthday: Date,
+  date: Date,
 });
 
 //Define new object
 var newUser = new User({
   username: "mattivirtanen",
   password: 1234,
-  birthday: '2000-12-25'
+  birthday: '2000-12-27',
+  date: Date(),
 });
 
 // Save object to database
 newUser.save(function(err, user) {
   if (err) return console.log(err);
   console.log(user);
+  mongoose.disconnect();
+
 });

@@ -17,8 +17,8 @@ var user = process.env.MONGO_USERID
 var pw = process.env.MONGO_PW
 
 // Create connection script to db
-//const uri = "mongodb+srv://" + user + ":" + pw + "@cluster0.dld5m.mongodb.net/sample_mflix?retryWrites=true&w=majority";
-const uri = "mongodb+srv://" + user + ":"+ pw + "@cluster0.nqnlt.mongodb.net/?sample_mflix?retryWrites=true&w=majority";
+
+const uri = "mongodb+srv://" + user + ":"+ pw + "@cluster0.dld5m.mongodb.net/?retryWrites=true&w=majority";
 
 // Make the routes
 
@@ -32,23 +32,30 @@ app.get("/api/movies", function(req, res) {
 
     //res.send("Printout the movies.");
     
-    // Take connection to "sample_mflix" and collection "movies"
-    var data = "";
-    client.connect(err => {
-    const collection = client.db("sample_mflix").collection("movies");
-    if (err) throw err;
-    // make query with collection-object
-    collection
-      .find() // Use empty find to show all contents
-      .limit(10)
-      .toArray(function(err, result) {
-        // Return as JSON table
-        if (err) throw err;
-        console.log(result); // Print to console
-        res.send(result); // Return the result
-        client.close(); // Close the connection
-      });
-  });
+  async function connectAndFetch(){
+    try {
+      // Take connection to "sample_mflix" and collection "movies"
+      //var data = "";
+      await client.connect();
+      const collection = client.db("sample_mflix").collection("movies");
+      
+      // make query with collection-object
+      var result = await collection
+        .find() // Use empty find to show all contents
+        .limit(10)
+        .toArray() 
+
+      res.send(result);
+  
+    } catch (e){
+      console.error(e);
+    } finally {
+      await client.close();
+      console.log("Connection closed to MONGO");
+    }
+  }
+  connectAndFetch();
+
 });
 
 // Add one movie - see how to read the POST parameters
@@ -68,7 +75,7 @@ app.delete("/api/remove/:id", function(req, res) {
 });
 
 // Web server by express
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8080;
 app.listen(PORT, function() {
     console.log("Example app is listening on port %d", PORT);
 });

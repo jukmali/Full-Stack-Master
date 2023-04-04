@@ -10,7 +10,9 @@ var pw = process.env.MONGO_PW
 
 // Create connection script to db
 //const uri = "mongodb+srv://" + user + ":"+ pw + "@cluster0.nqnlt.mongodb.net/?retryWrites=true&w=majority";
-const uri = "mongodb+srv://" + user + ":"+ pw + "@cluster0.nqnlt.mongodb.net/sample_mflix?retryWrites=true&w=majority";
+//const uri = "mongodb+srv://" + user + ":"+ pw + "@cluster0.nqnlt.mongodb.net/sample_mflix?retryWrites=true&w=majority";
+//const uri = "mongodb+srv://" + user + ":"+ pw + "@cluster0.dld5m.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://" + user + ":"+ pw + "@cluster0.dld5m.mongodb.net/?retryWrites=true&w=majority";
 
 
 // Create connection object
@@ -25,30 +27,34 @@ var query = {
   };
   
   // New data object
-  var newMovie = {
+  var newPerson = {
     userid: "happy.lector@laurea.fi",
     password: "ope",
+    date: Date(),
   };
   
-  // Let's make connection to "sample_mflix" and there the collection "movies"
-  client.connect(err => {
-    const collection = client.db("connectionDB").collection("passwords");
-    if (err) throw err;
-  
-    // Make addision with collection-object
-    collection.insertOne(newMovie, function(err, r) {
-      // How many objects have been included (1)
-      //console.log(r.insertedCount);
-    });
-  
-    // Check that new addition is in the db
-    collection
-      .find(query) // Here is used the query
-      .limit(5) // Limit results
-      .toArray(function(err, result) {
-        // Return as JSON table
-        if (err) throw err;
-        console.log(result); //Print to console
-        client.close(); // Close the connection
-      });
-  });
+  async function connectAndInsert(){
+
+    try{
+
+      await client.connect();
+      const collection = client.db("connectionDB").collection("passwords");
+
+      collection.insertOne(newPerson);
+
+      var result = await collection
+        .find(query)
+        .limit(5)
+        .toArray();
+
+      console.log(result)
+  } catch (e) {
+    console.log(e);
+
+  } finally {
+    await client.close();
+  }
+  }
+
+  connectAndInsert();
+

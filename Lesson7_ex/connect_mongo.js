@@ -22,12 +22,20 @@ const client = new MongoClient(uri, {
 });
 
 /* Let's make the connection */
+async function connect(){
+        
+    try{
+        await client.connect();
+        console.log("Connected to MONGO");
+        
 
-client.connect(function (err, r) {
-    if (err) throw err;
-    else console.log("Connected!");
+    } catch (e){
+        console.error(e);
+    } finally {
+        await client.close();
+        console.log("Connection closed to MONGO");
+    }
 
-    // Close the connection
-    client.close();
-    console.log("Disconnected");
-});
+}
+
+connect();
